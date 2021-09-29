@@ -13,7 +13,7 @@
 public class Magpie
 {
     /**
-     * Get a default greeting   
+     * Get a default greeting
      * @return a greeting
      */
     public String getGreeting()
@@ -31,8 +31,7 @@ public class Magpie
     public String getResponse(String statement)
     {
         String response = "";
-        if (statement.indexOf("no") >= 0)
-        {
+        if (statement.indexOf("no") >= 0) {
             response = "Why so negative?";
         }
         else if (statement.indexOf("mother") >= 0
@@ -42,8 +41,42 @@ public class Magpie
         {
             response = "Tell me more about your family.";
         }
-        else
+        else if (statement.indexOf("cat") >= 0
+                || statement.indexOf("dog") >= 0
+                || statement.indexOf("puppy") >= 0
+                || statement.indexOf("kitten") >= 0)
         {
+            response = "Tell me more about your pets.";
+        }
+        else if (statement.indexOf("Mr. Finkelstein") >= 0
+                || statement.indexOf("Kimiko") >= 0
+                || statement.indexOf("Nathan") >= 0
+                || statement.indexOf("Howard") >= 0)
+        {
+            response = "They sound like a good teacher.";
+        }
+        else if (statement.indexOf("soccer") >= 0
+                || statement.indexOf("golf") >= 0
+                || statement.indexOf("basketball") >= 0
+                || statement.indexOf("tennis") >= 0)
+        {
+            response = "I enjoy that sport too.";
+        }
+        else if (statement.indexOf("no") >= 0)
+        {
+            response = "Why not?";
+        }
+        else if (statement.indexOf("biscuit") >= 0
+                || statement.indexOf("lettuce") >= 0
+                || statement.indexOf("burger") >= 0
+                || statement.indexOf("fries") >= 0)
+        {
+            response = "That sounds yummy!";
+        }
+        else if (statement.indexOf(statement.trim()) <= 0 ){
+            response = "Say something please.";
+        }
+        else {
             response = getRandomResponse();
         }
         return response;
@@ -90,7 +123,19 @@ public class Magpie
     // The method returns the index of the first character in word
     // if it is found, and returns -1 otherwise. 
     public int findWord(String str, String word) {
-        return -1;
+        int x = str.indexOf(word);
+        if (str.charAt(x-1) == ' ' && str.charAt(x + word.length()) == ' '){
+            return x;
+        }
+        else if (x == 0 && str.charAt(x + word.length()) == ' '){
+            return x;
+        }
+        else if (str.charAt(x -1) == ' ' && str.charAt(word.charAt(word.length())) == str.length()-1){
+            return x;
+        }
+        else {
+            return -1;
+        }
     }
 
     
