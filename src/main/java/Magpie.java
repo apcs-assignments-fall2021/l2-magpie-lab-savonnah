@@ -31,45 +31,45 @@ public class Magpie
     public String getResponse(String statement)
     {
         String response = "";
-        if (statement.indexOf("no") >= 0) {
+        if (findWord(statement, "no") >= 0) {
             response = "Why so negative?";
         }
-        else if (statement.indexOf("mother") >= 0
-                || statement.indexOf("father") >= 0
-                || statement.indexOf("sister") >= 0
-                || statement.indexOf("brother") >= 0)
+        else if (findWord(statement, "mother") >= 0
+                || findWord(statement, "sister") >= 0
+                || findWord(statement, "father") >= 0
+                || findWord(statement, "brother") >= 0)
         {
             response = "Tell me more about your family.";
         }
-        else if (statement.indexOf("cat") >= 0
-                || statement.indexOf("dog") >= 0
-                || statement.indexOf("puppy") >= 0
-                || statement.indexOf("kitten") >= 0)
+        else if (findWord(statement, "cat") >= 0
+                || findWord(statement, "dog") >= 0
+                || findWord(statement, "kitten") >= 0
+                || findWord(statement, "puppy") >= 0)
         {
             response = "Tell me more about your pets.";
         }
-        else if (statement.indexOf("Mr. Finkelstein") >= 0
-                || statement.indexOf("Kimiko") >= 0
-                || statement.indexOf("Nathan") >= 0
-                || statement.indexOf("Howard") >= 0)
+        else if (findWord(statement, "Mr. Finklestein") >= 0
+                || findWord(statement, "Kimiko") >= 0
+                || findWord(statement, "Nathan") >= 0
+                || findWord(statement, "Howard") >= 0)
         {
             response = "They sound like a good teacher.";
         }
-        else if (statement.indexOf("soccer") >= 0
-                || statement.indexOf("golf") >= 0
-                || statement.indexOf("basketball") >= 0
-                || statement.indexOf("tennis") >= 0)
+        else if (findWord(statement, "soccer") >= 0
+                || findWord(statement, "golf") >= 0
+                || findWord(statement, "basketball") >= 0
+                || findWord(statement, "tennis") >= 0)
         {
             response = "I enjoy that sport too.";
         }
-        else if (statement.indexOf("no") >= 0)
+        else if (findWord(statement, "no") >= 0)
         {
             response = "Why not?";
         }
-        else if (statement.indexOf("biscuit") >= 0
-                || statement.indexOf("lettuce") >= 0
-                || statement.indexOf("burger") >= 0
-                || statement.indexOf("fries") >= 0)
+        else if (findWord(statement, "biscuit") >= 0
+                || findWord(statement, "lettuce") >= 0
+                || findWord(statement, "burger") >= 0
+                || findWord(statement, "fries") >= 0)
         {
             response = "That sounds yummy!";
         }
