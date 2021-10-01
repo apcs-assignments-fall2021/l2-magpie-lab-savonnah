@@ -124,18 +124,16 @@ public class Magpie
     // if it is found, and returns -1 otherwise. 
     public int findWord(String str, String word) {
         int x = str.indexOf(word);
-        if (str.charAt(x-1) == ' ' && str.charAt(x + word.length()) == ' '){
-            return x;
+        if (x >= 0) {
+            if (x + word.length() < str.length() - word.length() && str.charAt(x + word.length()) == ' ') {
+                return x;
+            } else if (x == 0 && str.charAt(x + word.length()) == ' ') {
+                return x;
+            } else if (str.charAt(x - 1) == ' ' && str.charAt(x + word.length()) == str.charAt(str.length() - 1)) {
+                return x;
+            }
         }
-        else if (x == 0 && str.charAt(x + word.length()) == ' '){
-            return x;
-        }
-        else if (str.charAt(x -1) == ' ' && str.charAt(word.charAt(word.length())) == str.length()-1){
-            return x;
-        }
-        else {
-            return -1;
-        }
+        return -1;
     }
 
     
@@ -149,7 +147,14 @@ public class Magpie
      */
     public String transformIWantStatement(String statement)
     {
-        //your code here
+        if (statement.indexOf("I want") >= 0) {
+            int newstrindex = findWord(statement, "I want");
+            newstrindex = newstrindex + 6;
+            String newstr = "";
+            int endstrindex = statement.length();
+            newstr =
+        }
+
         return "";
     }
 
