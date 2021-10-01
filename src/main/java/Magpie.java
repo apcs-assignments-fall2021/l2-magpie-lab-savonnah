@@ -73,6 +73,12 @@ public class Magpie
         {
             response = "That sounds yummy!";
         }
+        else if (findWord(statement, "I want") >= 0){
+            response = transformIWantStatement(statement);
+        }
+        else if (findWord(statement, "I want to") >= 0){
+            response = transformIWantToStatement(statement);
+        }
         else if (statement.indexOf(statement.trim()) <= 0 ){
             response = "Say something please.";
         }
@@ -123,13 +129,15 @@ public class Magpie
     // The method returns the index of the first character in word
     // if it is found, and returns -1 otherwise. 
     public int findWord(String str, String word) {
+        str = str.toLowerCase();
+        word = word.toLowerCase();
         int x = str.indexOf(word);
         if (x >= 0) {
             if (x + word.length() < str.length() - word.length() && str.charAt(x + word.length()) == ' ') {
                 return x;
             } else if (x == 0 && str.charAt(x + word.length()) == ' ') {
                 return x;
-            } else if (str.charAt(x - 1) == ' ' && str.charAt(x + word.length()) == str.charAt(str.length() - 1)) {
+            } else if (str.charAt(x - 1) == ' ' && str.charAt(x + word.length()-1) == str.charAt(str.length() - 1)) {
                 return x;
             }
         }
@@ -147,15 +155,16 @@ public class Magpie
      */
     public String transformIWantStatement(String statement)
     {
-        if (statement.indexOf("I want") >= 0) {
+        String newstr = "";
+        statement = statement.toLowerCase();
+        if (findWord(statement,"I want") >= 0) {
             int newstrindex = findWord(statement, "I want");
             newstrindex = newstrindex + 6;
-            String newstr = "";
             int endstrindex = statement.length();
-            newstr =
+            String sub = statement.substring(newstrindex, endstrindex);
+            newstr = newstr + sub;
         }
-
-        return "";
+        return ("Would you really be happy if you had" + newstr + "?");
     }
 
     /**
@@ -178,8 +187,16 @@ public class Magpie
      */
     public String transformIWantToStatement(String statement)
     {
-        // your code here
-        return "";
+        String newstr = "";
+        statement = statement.toLowerCase();
+        if (findWord(statement,"I want to") >= 0) {
+            int newstrindex = findWord(statement, "I want to");
+            newstrindex = newstrindex + 6;
+            int endstrindex = statement.length();
+            String sub = statement.substring(newstrindex, endstrindex);
+            newstr = newstr + sub;
+        }
+        return ("What would it mean" + newstr + "?");
     }
 
 
