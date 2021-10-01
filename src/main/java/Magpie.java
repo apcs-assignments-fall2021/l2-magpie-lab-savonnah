@@ -79,6 +79,12 @@ public class Magpie
         else if (findWord(statement, "I want to") >= 0){
             response = transformIWantToStatement(statement);
         }
+        else if (findWord(statement,"I") >= 0 && findWord(statement,"you") >= 0) {
+            response = transformIYouStatement(statement);
+        }
+        if (findWord(statement,"you") >= 0 && findWord(statement,"me") >= 0) {
+            response = transformYouMeStatement(statement);
+        }
         else if (statement.indexOf(statement.trim()) <= 0 ){
             response = "Say something please.";
         }
@@ -175,8 +181,15 @@ public class Magpie
      */
     public String transformIYouStatement(String statement)
     {
-        //your code here
-        return "";
+        String newstr = "";
+        statement = statement.toLowerCase();
+        if (findWord(statement,"I") >= 0 && findWord(statement,"you") >= 0) {
+            int iindex = findWord(statement, "I");
+            iindex = iindex + 2;
+            String sub = statement.substring(iindex, (findWord(statement, "you")-1));
+            newstr = newstr + sub;
+        }
+        return ("Why do you " + newstr + " me?");
     }
 
     /**
@@ -210,7 +223,14 @@ public class Magpie
      */
     public String transformYouMeStatement(String statement)
     {
-        // your code here
-        return "";
+        String newstr = "";
+        statement = statement.toLowerCase();
+        if (findWord(statement,"you") >= 0 && findWord(statement,"me") >= 0) {
+            int iindex = findWord(statement, "you");
+            iindex = iindex + 4;
+            String sub = statement.substring(iindex, (findWord(statement, "me")-1));
+            newstr = newstr + sub;
+        }
+        return ("What makes you think that I " + newstr + " you?");
     }
 }
