@@ -79,18 +79,22 @@ public class Magpie
         else if (findWord(statement, "I want to") >= 0){
             response = transformIWantToStatement(statement);
         }
+        else if (findWord(statement, "I like") >= 0){
+            response = transformILikeStatement(statement);
+        }
         else if (findWord(statement,"I") >= 0 && findWord(statement,"you") >= 0) {
             response = transformIYouStatement(statement);
         }
-        if (findWord(statement,"you") >= 0 && findWord(statement,"me") >= 0) {
+        else if (findWord(statement,"you") >= 0 && findWord(statement,"me") >= 0) {
             response = transformYouMeStatement(statement);
         }
-        else if (statement.indexOf(statement.trim()) <= 0 ){
+        else if (statement.trim().equals("")){
             response = "Say something please.";
         }
         else {
             response = getRandomResponse();
         }
+
         return response;
     }
     
@@ -232,5 +236,19 @@ public class Magpie
             newstr = newstr + sub;
         }
         return ("What makes you think that I " + newstr + " you?");
+    }
+
+    public String transformILikeStatement(String statement)
+    {
+        String newstr = "";
+        statement = statement.toLowerCase();
+        if (findWord(statement,"I like") >= 0) {
+            int newstrindex = findWord(statement, "I like");
+            newstrindex = newstrindex + 6;
+            int endstrindex = statement.length();
+            String sub = statement.substring(newstrindex, endstrindex);
+            newstr = newstr + sub;
+        }
+        return ("Why do you like" + newstr + "?");
     }
 }
